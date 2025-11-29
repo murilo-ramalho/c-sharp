@@ -1,0 +1,29 @@
+# Build results
+bin/
+obj/
+
+# Visual Studio cache
+.vs/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# NuGet
+*.nupkg
+.nuget/
+packages/
+
+# Logs
+*.log
+
+# OS generated
+.DS_Store
+Thumbs.db
