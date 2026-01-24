@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BucketAWS", "BucketAWS\Buck
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuckeApi", "BuckeApi\BuckeApi.csproj", "{DF78C997-C415-49E3-B0E4-DE2C39ECDCF4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "abstractFunc", "abstractFunc\abstractFunc.csproj", "{B614D2BF-7D20-4FB4-9F42-BC09D5D0633C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{DF78C997-C415-49E3-B0E4-DE2C39ECDCF4}.Release|x64.Build.0 = Release|Any CPU
 		{DF78C997-C415-49E3-B0E4-DE2C39ECDCF4}.Release|x86.ActiveCfg = Release|Any CPU
 		{DF78C997-C415-49E3-B0E4-DE2C39ECDCF4}.Release|x86.Build.0 = Release|Any CPU
+		{B614D2BF-7D20-4FB4-9F42-BC09D5D0633C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B614D2BF-7D20-4FB4-9F42-BC09D5D0633C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B614D2BF-7D20-4FB4-9F42-BC09D5D0633C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B614D2BF-7D20-4FB4-9F42-BC09D5D0633C}.Debug|x64.Build.0 = Debug|Any CPU
+		{B614D2BF-7D20-4FB4-9F42-BC09D5D0633C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B614D2BF-7D20-4FB4-9F42-BC09D5D0633C}.Debug|x86.Build.0 = Debug|Any CPU
+		{B614D2BF-7D20-4FB4-9F42-BC09D5D0633C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B614D2BF-7D20-4FB4-9F42-BC09D5D0633C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B614D2BF-7D20-4FB4-9F42-BC09D5D0633C}.Release|x64.ActiveCfg = Release|Any CPU
+		{B614D2BF-7D20-4FB4-9F42-BC09D5D0633C}.Release|x64.Build.0 = Release|Any CPU
+		{B614D2BF-7D20-4FB4-9F42-BC09D5D0633C}.Release|x86.ActiveCfg = Release|Any CPU
+		{B614D2BF-7D20-4FB4-9F42-BC09D5D0633C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
