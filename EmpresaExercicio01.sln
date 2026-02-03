@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamWriter", "StreamWrite
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diretory", "Diretory\Diretory.csproj", "{CDCD98A5-A188-4E4B-A7A3-5ED5D137630F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Path", "Path\Path.csproj", "{0506CFF5-B521-43CF-8FA6-B9F1658B135F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,6 +127,18 @@ Global
 		{CDCD98A5-A188-4E4B-A7A3-5ED5D137630F}.Release|x64.Build.0 = Release|Any CPU
 		{CDCD98A5-A188-4E4B-A7A3-5ED5D137630F}.Release|x86.ActiveCfg = Release|Any CPU
 		{CDCD98A5-A188-4E4B-A7A3-5ED5D137630F}.Release|x86.Build.0 = Release|Any CPU
+		{0506CFF5-B521-43CF-8FA6-B9F1658B135F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0506CFF5-B521-43CF-8FA6-B9F1658B135F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0506CFF5-B521-43CF-8FA6-B9F1658B135F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0506CFF5-B521-43CF-8FA6-B9F1658B135F}.Debug|x64.Build.0 = Debug|Any CPU
+		{0506CFF5-B521-43CF-8FA6-B9F1658B135F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0506CFF5-B521-43CF-8FA6-B9F1658B135F}.Debug|x86.Build.0 = Debug|Any CPU
+		{0506CFF5-B521-43CF-8FA6-B9F1658B135F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0506CFF5-B521-43CF-8FA6-B9F1658B135F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0506CFF5-B521-43CF-8FA6-B9F1658B135F}.Release|x64.ActiveCfg = Release|Any CPU
+		{0506CFF5-B521-43CF-8FA6-B9F1658B135F}.Release|x64.Build.0 = Release|Any CPU
+		{0506CFF5-B521-43CF-8FA6-B9F1658B135F}.Release|x86.ActiveCfg = Release|Any CPU
+		{0506CFF5-B521-43CF-8FA6-B9F1658B135F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
