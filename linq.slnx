@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="linq&amp;lambda/linq&amp;lambda.csproj" />
+  <Project Path="linq/linq.csproj" />
+</Solution>
