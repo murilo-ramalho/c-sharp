@@ -34,6 +34,8 @@ List<Product> products = new List<Product>()
     new Product() { Id = 11, Name = "Level", Price = 70.0, Category = c1 }
 };
 
+// linq é saBOOOR sql
+
 var r1 = products.Where(x => x.Category.tier == 1 && x.Price < 900);
 Print("tier 1 and < 900: ", r1);
 
@@ -60,3 +62,32 @@ Console.WriteLine("Single or default test1: "+ r8);
 
 var r9 = products.Where(p => p.Id == 30).SingleOrDefault();
 Console.WriteLine("Single or default test1: "+ r9);
+
+var r10 = products.Max(x => x.Price);
+System.Console.WriteLine("max price: " + r10);
+
+var r11 = products.Min(x => x.Price);
+System.Console.WriteLine("min price: " + r11);
+
+var r12 = products.Where(p => p.Category.id == 1).Sum(p => p.Price);
+System.Console.WriteLine("soma dos price: " + r12);
+
+var r13 = products.Where(p => p.Category.id == 1).Average(p => p.Price);
+System.Console.WriteLine("média: " + r13);
+
+var r14 = products.Where(p => p.Category.id == 5).Select(p => p.Price).DefaultIfEmpty(0.0).Average();
+System.Console.WriteLine("category 5: "+ r14);
+
+var r15 = products.Where(p => p.Category.id == 1).Select(p => p.Price).Aggregate(0.0, (x, y) => x + y);
+System.Console.WriteLine("agregate: "+ r15);
+
+var r16 = products.GroupBy(p => p.Category);
+foreach(IGrouping<Category, Product> group in r16)
+{
+    System.Console.WriteLine("category: "+ group.Key.name + ":");
+    foreach (Product p in group)
+    {
+        System.Console.WriteLine(p);
+    }
+    System.Console.WriteLine();
+}
