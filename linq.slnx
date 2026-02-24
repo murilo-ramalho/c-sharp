@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="expressionLambda/expressionLambda.csproj" />
   <Project Path="linq&amp;lambda/linq&amp;lambda.csproj" />
+  <Project Path="Linq&amp;sql/Linq&amp;sql.csproj" />
   <Project Path="linq/linq.csproj" />
 </Solution>
