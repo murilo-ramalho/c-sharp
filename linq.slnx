@@ -1,4 +1,6 @@
 <Solution>
+  <Project Path="exercicioLinq/exercicioLinq.csproj" />
+  <Project Path="exercicioLinq2/exercicioLinq2.csproj" />
   <Project Path="expressionLambda/expressionLambda.csproj" />
   <Project Path="linq&amp;lambda/linq&amp;lambda.csproj" />
   <Project Path="Linq&amp;sql/Linq&amp;sql.csproj" />
