@@ -20,4 +20,13 @@ public class Tabuleiro
     {
         return Pecas[linha,coluna];
     }
+
+    public void colocarPeca(Peca p, Posicao pos)
+    {
+        if (pos.Linha > 7 || pos.Coluna > 7)
+            throw new Exception("burro");
+
+        Pecas[pos.Linha, pos.Coluna] = p;
+        p.Posicao = pos;
+    }
 }
