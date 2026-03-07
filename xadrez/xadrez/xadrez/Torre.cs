@@ -1,5 +1,5 @@
 using System;
-using xadrez.jogo;
+using xadrez.xadrez;
 
 namespace xadrez.tabuleiro;
 
