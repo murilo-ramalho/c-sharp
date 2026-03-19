@@ -11,7 +11,7 @@ public int qtdMovimentos { get; protected set; }
 public Peca(Tabuleiro tabuleiro, Cor cor)
     {
         this.Posicao = null;
-        this.Cor = Cor;
+        this.Cor = cor;
         this.Tabuleiro = tabuleiro;
         this.qtdMovimentos = 0;
     }
