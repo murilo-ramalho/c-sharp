@@ -1,4 +1,5 @@
 using xadrez.tabuleiro;
+using xadrez.xadrez;
 
 namespace xadrez;
 
@@ -42,5 +43,13 @@ public class Tela
             Console.Write(peca);
             Console.ForegroundColor = aux;
         }
+    }
+
+    public static PosicaoXadrez lerPosicaoXadrez()
+    {
+        string s = Console.ReadLine();
+        char col = s[0];
+        int row = int.Parse(s[1] + "");
+        return new PosicaoXadrez(col, row);
     }
 }

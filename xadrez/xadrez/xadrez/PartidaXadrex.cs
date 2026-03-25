@@ -10,11 +10,14 @@ public class PartidaXadrex
     private int Turno;
     private Cor jogadorAtual;
 
+    public bool isTerminado { get; private set; }
+
     public PartidaXadrex()
     {
         Tabuleiro = new Tabuleiro(8, 8);
         Turno = 1;
         jogadorAtual = Cor.Branco;
+        isTerminado = false;
         colocarPecas();
     }
 
