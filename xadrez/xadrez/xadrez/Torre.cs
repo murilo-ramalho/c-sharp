@@ -68,9 +68,9 @@ public class Torre : Peca
         return "T";
     }
 
-     private bool podeMover(Posicao pos)
+    private bool podeMover(Posicao pos)
     {
         Peca p = Tabuleiro.peca(pos);
-        return p != null || p.Cor != this.Cor;
+        return p == null || p.Cor != Cor;
     }
 }

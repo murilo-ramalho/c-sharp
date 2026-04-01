@@ -61,9 +61,9 @@ public class Tabuleiro
     {
         if (
             pos.Linha < 0 ||
-            pos.Linha > Linhas ||
+            pos.Linha >= Linhas ||
             pos.Coluna < 0 ||
-            pos.Coluna > Colunas
+            pos.Coluna >= Colunas
         )
         {
             return false;

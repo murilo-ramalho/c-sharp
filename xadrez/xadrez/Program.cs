@@ -10,12 +10,19 @@ try
     while (!partida.isTerminado)
     {
         Console.Clear();
+        Console.BackgroundColor = ConsoleColor.Black;
         Tela.imprimirTabuleiro(partida.Tabuleiro);
 
-        System.Console.WriteLine();
-        System.Console.WriteLine("Origem: ");
+        Console.WriteLine();
+        Console.WriteLine("Origem: ");
         Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
-        System.Console.WriteLine("Destino: ");
+        
+        Console.Clear();
+        bool[,] posicaoPossiveis = partida.Tabuleiro.peca(origem).MovimentoPossivel();
+        Tela.imprimirTabuleiro(partida.Tabuleiro, posicaoPossiveis);
+
+        Console.WriteLine();
+        Console.WriteLine("Destino: ");
         Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
 
         partida.executaMovimento(origem, destino);
@@ -24,7 +31,7 @@ try
     Tela.imprimirTabuleiro(partida.Tabuleiro);
 } catch (TabuleiroException e)
 {
-    System.Console.WriteLine(e.Message);
+    Console.WriteLine(e.Message);
 }
 
 
