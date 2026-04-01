@@ -16,6 +16,25 @@ public abstract class Peca
         this.qtdMovimentos = 0;
     }
 
+    public bool existeMovimentoPossiveis()
+    {
+        bool[,] mat = MovimentoPossivel();
+        for (int i = 0; i < Tabuleiro.Linhas; i++)
+        {
+            for (int j = 0; j < Tabuleiro.Colunas; j++)
+            {
+                if (mat[i,j])
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    public bool podeMover(Posicao pos)
+    {
+        return MovimentoPossivel()[pos.Linha, pos.Coluna];
+    }
+
     public void incrementarQtaMovimentos()
     {
         qtdMovimentos++;

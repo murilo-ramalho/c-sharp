@@ -1,3 +1,4 @@
+using xadrez.exceptions;
 using xadrez.tabuleiro;
 using xadrez.xadrez;
 
@@ -70,8 +71,20 @@ public class Tela
     public static PosicaoXadrez lerPosicaoXadrez()
     {
         string s = Console.ReadLine();
+
+        if (s == null)
+            throw new TabuleiroException("Insira uma posição");
+        if (s.Length != 2)
+            throw new TabuleiroException("Insira uma posição Válida");
+
         char col = s[0];
         int row = int.Parse(s[1] + "");
+        
+        if (!char.IsLetter(col) || char.ToLower(col) < 'a' || char.ToLower(col) > 'h')
+            throw new TabuleiroException("Insira uma Coluna Válida");
+        if (row < 1 || row > 8)
+            throw new TabuleiroException("Insira uma Linha Válida");
+
         return new PosicaoXadrez(col, row);
     }
 }
