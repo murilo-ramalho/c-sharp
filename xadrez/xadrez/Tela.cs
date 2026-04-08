@@ -1,6 +1,7 @@
 using xadrez.exceptions;
 using xadrez.tabuleiro;
 using xadrez.xadrez;
+using System.Collections.Generic;
 
 namespace xadrez;
 
@@ -18,6 +19,36 @@ public class Tela
             Console.WriteLine();
         }
         Console.WriteLine("  a b c d e f g h");
+    }
+
+    public static void imprimirPartida(PartidaXadrex partida)
+    {
+        imprimirTabuleiro(partida.Tabuleiro);
+        Console.WriteLine();
+        imprimirPecasCapturadas(partida);
+        Console.WriteLine("Turno: " + partida.Turno);
+        Console.WriteLine("Aguardando: " + partida.jogadorAtual);
+    }
+
+    public static void imprimirPecasCapturadas(PartidaXadrex partida)
+    {
+        System.Console.WriteLine("Pecas capturadas: ");
+        System.Console.Write("Branco: ");
+        imprimirConjunto(partida.pecasCapturadas(Cor.Branco));
+        System.Console.WriteLine();
+        System.Console.Write("Preto: ");
+        imprimirConjunto(partida.pecasCapturadas(Cor.Preto));
+        System.Console.WriteLine();
+    }
+
+    public static void imprimirConjunto(HashSet<Peca> conjunto)
+    {
+        System.Console.Write("[");
+        foreach (Peca item in conjunto)
+        {
+            System.Console.Write(item + " ");            
+        }
+        System.Console.Write("]");
     }
 
     public static void imprimirTabuleiro(Tabuleiro tabuleiro, bool[,] posicaoPossiveil)

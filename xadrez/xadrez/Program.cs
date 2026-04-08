@@ -2,6 +2,23 @@
 using xadrez.tabuleiro;
 using xadrez.xadrez;
 using xadrez.exceptions;
+using System.IO;
+
+static void SafeConsoleClear()
+{
+    // Console.Clear() may throw when there's no attached console (or output is redirected).
+    try
+    {
+        if (!Console.IsOutputRedirected)
+        {
+            Console.Clear();
+        }
+    }
+    catch (IOException)
+    {
+        System.Console.WriteLine("Brutal");
+    }
+}
 
 try
 {
@@ -9,13 +26,11 @@ try
 
     while (!partida.isTerminado)
     {
-        Console.Clear();
+        SafeConsoleClear();
         try
         {
             Console.BackgroundColor = ConsoleColor.Black;
-            Tela.imprimirTabuleiro(partida.Tabuleiro);
-            Console.WriteLine();
-            Console.WriteLine("Aguardando: " + partida.jogadorAtual);
+            Tela.imprimirPartida(partida);
 
             Console.WriteLine();
             Console.WriteLine("Origem: ");
@@ -23,7 +38,7 @@ try
             Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
             partida.validarPosicaoOrigem(origem); 
             
-            Console.Clear();
+            SafeConsoleClear();
             bool[,] posicaoPossiveis = partida.Tabuleiro.peca(origem).MovimentoPossivel();
             Tela.imprimirTabuleiro(partida.Tabuleiro, posicaoPossiveis);
 
