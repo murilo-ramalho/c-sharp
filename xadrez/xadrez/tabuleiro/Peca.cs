@@ -40,5 +40,10 @@ public abstract class Peca
         qtdMovimentos++;
     }
 
+    public void decrementarQtaMovimentos()
+    {
+        qtdMovimentos--;
+    }
+
     public abstract bool[,] MovimentoPossivel();
 }

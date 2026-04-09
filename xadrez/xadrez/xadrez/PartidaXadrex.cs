@@ -12,6 +12,7 @@ public class PartidaXadrex
     public int Turno { get; private set; }
     public Cor jogadorAtual { get; private set; }
     public bool isTerminado { get; private set; }
+    public bool isXeque { get; private set; }
     private HashSet<Peca> pecas;
     private HashSet<Peca> capturadas;
 
@@ -21,12 +22,13 @@ public class PartidaXadrex
         Turno = 1;
         jogadorAtual = Cor.Branco;
         isTerminado = false;
+        isXeque = false;
         pecas = new HashSet<Peca>();
         capturadas = new HashSet<Peca>();
         colocarPecas();
     }
 
-    public void executaMovimento(Posicao origem, Posicao destino)
+    public Peca executaMovimento(Posicao origem, Posicao destino)
     {
         Peca p = Tabuleiro.retiraPeca(origem);
         p.incrementarQtaMovimentos();
@@ -34,13 +36,40 @@ public class PartidaXadrex
         Tabuleiro.colocarPeca(p, destino);
         if (pecaCapturada != null)
             capturadas.Add(pecaCapturada);
+        
+        return pecaCapturada;
     }
 
     public void realizaJogada(Posicao origem, Posicao destino)
     {
-        executaMovimento(origem, destino);
+        Peca pecaCapturada = executaMovimento(origem, destino);
+
+        if (estaEmXeque(jogadorAtual))
+        {
+            desfazMovimento(origem, destino, pecaCapturada);
+            throw new TabuleiroException("Não é possivel um movimento que deixe em xeque!");
+        }
+
         Turno++;
         mudaJogador();
+    }
+
+    public void desfazMovimento(Posicao origem, Posicao destino, Peca pecaCapturada)
+    {
+        Peca p = Tabuleiro.retiraPeca(destino);
+        p.decrementarQtaMovimentos();
+        if (pecaCapturada != null)
+        {
+            Tabuleiro.colocarPeca(pecaCapturada, destino);
+            capturadas.Remove(pecaCapturada);
+        }
+
+        if (estaEmXeque(adiversaria(jogadorAtual)))
+            isXeque = true;
+        else 
+            isXeque = false;
+
+        Tabuleiro.colocarPeca(p, origem);
     }
 
     public void validarPosicaoOrigem(Posicao pos)
@@ -90,6 +119,45 @@ public class PartidaXadrex
         }
         return aux;
     }
+
+    private Cor adiversaria(Cor cor)
+    {
+        if (cor == Cor.Branco)
+            return Cor.Preto;
+
+        return Cor.Branco;
+    }
+
+    private Peca ehRei(Cor cor)
+    {
+        foreach (Peca item in pecasEmJogo(cor))
+        {
+            if (item is Rei)
+            {
+                return item;
+            }
+
+        }
+
+        throw new TabuleiroException("Não possui Rei da cor " + cor);
+        isTerminado = true;
+    }
+
+    public bool estaEmXeque(Cor cor)
+    {
+        Peca rei = ehRei(cor);
+
+        foreach (Peca item in pecasEmJogo(adiversaria(cor)))
+        {
+            bool[,] mat = item.MovimentoPossivel();
+            if (mat[rei.Posicao.Linha, rei.Posicao.Coluna])
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
     
     public HashSet<Peca> pecasEmJogo(Cor cor)
     {
@@ -109,7 +177,9 @@ public class PartidaXadrex
     {
         colocarNovaPeca('a', 1, new Torre(Tabuleiro, Cor.Branco));
         colocarNovaPeca('h', 1, new Torre(Tabuleiro, Cor.Branco));
+        colocarNovaPeca('e', 1, new Rei(Tabuleiro, Cor.Branco));
         colocarNovaPeca('a', 8, new Torre(Tabuleiro, Cor.Preto));
         colocarNovaPeca('h', 8, new Torre(Tabuleiro, Cor.Preto));
+        colocarNovaPeca('d', 8, new Rei(Tabuleiro, Cor.Preto));
     }
 }
