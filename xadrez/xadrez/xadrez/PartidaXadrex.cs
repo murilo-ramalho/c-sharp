@@ -50,6 +50,14 @@ public class PartidaXadrex
             throw new TabuleiroException("Não é possivel um movimento que deixe em xeque!");
         }
 
+        if (estaEmXeque(adiversaria(jogadorAtual)))
+            isXeque = true;
+        else 
+            isXeque = false;
+
+        if (estaEmXequeMate(adiversaria(jogadorAtual)))
+            isTerminado = true;
+            
         Turno++;
         mudaJogador();
     }
@@ -63,13 +71,35 @@ public class PartidaXadrex
             Tabuleiro.colocarPeca(pecaCapturada, destino);
             capturadas.Remove(pecaCapturada);
         }
-
-        if (estaEmXeque(adiversaria(jogadorAtual)))
-            isXeque = true;
-        else 
-            isXeque = false;
-
         Tabuleiro.colocarPeca(p, origem);
+    }
+
+    public bool estaEmXequeMate(Cor cor)
+    {
+        if (!estaEmXeque(cor))
+            return false;
+        
+        foreach (Peca item in pecasEmJogo(cor))
+        {
+            bool[,] mat = item.MovimentoPossivel();
+            for (int i = 0; i < Tabuleiro.Linhas; i++)
+            {
+                for (int j = 0; j < Tabuleiro.Colunas; j++)
+                {
+                    if (mat[i,j])
+                    {
+                        Posicao destino = new Posicao(i,j);
+                        Peca pecaCapturada = executaMovimento(item.Posicao, destino);
+                        bool testeXeque = estaEmXeque(cor);
+                        desfazMovimento(item.Posicao, destino, pecaCapturada);
+                        if (!testeXeque)
+                            return false;
+                    }
+                }
+            }
+        }
+
+        return true;
     }
 
     public void validarPosicaoOrigem(Posicao pos)
@@ -124,8 +154,8 @@ public class PartidaXadrex
     {
         if (cor == Cor.Branco)
             return Cor.Preto;
-
-        return Cor.Branco;
+        else 
+            return Cor.Branco;
     }
 
     private Peca ehRei(Cor cor)
@@ -133,9 +163,7 @@ public class PartidaXadrex
         foreach (Peca item in pecasEmJogo(cor))
         {
             if (item is Rei)
-            {
                 return item;
-            }
 
         }
 

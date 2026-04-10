@@ -10,11 +10,15 @@ public class Rei : Peca
     private bool podeMover(Posicao pos)
     {
         Peca p = Tabuleiro.peca(pos);
-        return p != null || p.Cor != this.Cor;
+        return p == null || p.Cor != this.Cor;
     }
     public override bool[,] MovimentoPossivel()
     {
         bool[,] mat = new bool[Tabuleiro.Linhas, Tabuleiro.Colunas];
+        if (Posicao == null)
+        {
+            return mat;
+        }
         Posicao pos = new Posicao(0, 0);
 
         // acima

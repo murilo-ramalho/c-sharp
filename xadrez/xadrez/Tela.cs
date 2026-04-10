@@ -28,6 +28,11 @@ public class Tela
         imprimirPecasCapturadas(partida);
         Console.WriteLine("Turno: " + partida.Turno);
         Console.WriteLine("Aguardando: " + partida.jogadorAtual);
+        if (partida.isXeque)
+        {
+            Console.WriteLine();
+            System.Console.WriteLine("Xeque!");
+        }
     }
 
     public static void imprimirPecasCapturadas(PartidaXadrex partida)
