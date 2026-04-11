@@ -212,7 +212,7 @@ public class PartidaXadrex
         colocarNovaPeca('b', 1, new Cavalo(Tabuleiro, Cor.Branco));
         colocarNovaPeca('c', 1, new Bispo(Tabuleiro, Cor.Branco));
         colocarNovaPeca('d', 1, new Dama(Tabuleiro, Cor.Branco));
-        colocarNovaPeca('e', 1, new Rei(Tabuleiro, Cor.Branco));
+        colocarNovaPeca('e', 1, new Rei(Tabuleiro, Cor.Branco, this));
         colocarNovaPeca('f', 1, new Bispo(Tabuleiro, Cor.Branco));
         colocarNovaPeca('g', 1, new Cavalo(Tabuleiro, Cor.Branco));
         colocarNovaPeca('h', 1, new Torre(Tabuleiro, Cor.Branco));
@@ -230,7 +230,7 @@ public class PartidaXadrex
         colocarNovaPeca('b', 8, new Cavalo(Tabuleiro, Cor.Preto));
         colocarNovaPeca('c', 8, new Bispo(Tabuleiro, Cor.Preto));
         colocarNovaPeca('d', 8, new Dama(Tabuleiro, Cor.Preto));
-        colocarNovaPeca('e', 8, new Rei(Tabuleiro, Cor.Preto));
+        colocarNovaPeca('e', 8, new Rei(Tabuleiro, Cor.Preto, this));
         colocarNovaPeca('f', 8, new Bispo(Tabuleiro, Cor.Preto));
         colocarNovaPeca('g', 8, new Cavalo(Tabuleiro, Cor.Preto));
         colocarNovaPeca('h', 8, new Torre(Tabuleiro, Cor.Preto));
