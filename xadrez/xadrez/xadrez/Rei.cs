@@ -100,6 +100,19 @@ public class Rei : Peca
                     mat[Posicao.Linha, Posicao.Coluna + 2] = true;
                 }
             }
+
+            // roque grande
+            Posicao posT2 = new Posicao(Posicao.Linha, Posicao.Coluna - 4);
+            if(testeTorreRoque(posT2))
+            {
+                Posicao p1 = new Posicao(Posicao.Linha, Posicao.Coluna - 1);
+                Posicao p2 = new Posicao(Posicao.Linha, Posicao.Coluna - 2);
+                Posicao p3 = new Posicao(Posicao.Linha, Posicao.Coluna - 3);
+                if (Tabuleiro.peca(p1) == null && Tabuleiro.peca(p2) == null && Tabuleiro.peca(p3) == null)
+                {
+                    mat[Posicao.Linha, Posicao.Coluna - 2] = true;
+                }
+            }
         }
 
         return mat;

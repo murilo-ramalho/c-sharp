@@ -9,16 +9,24 @@ public class Tela
 {
     public static void imprimirTabuleiro(Tabuleiro tabuleiro)
     {
+        ConsoleColor corOriginal = Console.ForegroundColor;
+        ConsoleColor corIndice = ConsoleColor.Yellow;
+
         for (int i = 0; i < tabuleiro.Linhas; i++)
         {
+            Console.ForegroundColor = corIndice;
             Console.Write(8 - i + " ");
+            Console.ForegroundColor = corOriginal;
+
             for (int j = 0; j < tabuleiro.Colunas; j++) 
             {
                 ImprimirPeca(tabuleiro.peca(i, j));
             }
             Console.WriteLine();
         }
+        Console.ForegroundColor = corIndice;
         Console.WriteLine("  a b c d e f g h");
+        Console.ForegroundColor = corOriginal;
     }
 
     public static void imprimirPartida(PartidaXadrex partida)
@@ -69,10 +77,15 @@ public class Tela
     {
         ConsoleColor fundoOriginal = Console.BackgroundColor;
         ConsoleColor fundoAlterado = ConsoleColor.DarkGray;
+        ConsoleColor corOriginal = Console.ForegroundColor;
+        ConsoleColor corIndice = ConsoleColor.Yellow;
 
         for (int i = 0; i < tabuleiro.Linhas; i++)
         {
+            Console.ForegroundColor = corIndice;
             Console.Write(8 - i + " ");
+            Console.ForegroundColor = corOriginal;
+
             for (int j = 0; j < tabuleiro.Colunas; j++) 
             {
                 if (posicaoPossiveil[i, j])
@@ -85,7 +98,9 @@ public class Tela
             }
             Console.WriteLine();
         }
+        Console.ForegroundColor = corIndice;
         Console.WriteLine("  a b c d e f g h");
+        Console.ForegroundColor = corOriginal;
         Console.BackgroundColor = fundoOriginal;
     }
 

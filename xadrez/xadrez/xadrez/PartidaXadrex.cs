@@ -37,6 +37,26 @@ public class PartidaXadrex
         if (pecaCapturada != null)
             capturadas.Add(pecaCapturada);
         
+        // jogada especial roque pequeno
+        if(p is Rei && destino.Coluna == origem.Coluna + 2)
+        {
+            Posicao origemT = new Posicao(origem.Linha, origem.Coluna + 3);
+            Posicao destinoT = new Posicao(origem.Linha, origem.Coluna + 1);
+            Peca T = Tabuleiro.retiraPeca(origemT);
+            T.incrementarQtaMovimentos();
+            Tabuleiro.colocarPeca(T, destinoT);
+        }
+
+        // jogada especial roque grande
+        if(p is Rei && destino.Coluna == origem.Coluna - 2)
+        {
+            Posicao origemT = new Posicao(origem.Linha, origem.Coluna - 4);
+            Posicao destinoT = new Posicao(origem.Linha, origem.Coluna - 1);
+            Peca T = Tabuleiro.retiraPeca(origemT);
+            T.incrementarQtaMovimentos();
+            Tabuleiro.colocarPeca(T, destinoT);
+        }
+
         return pecaCapturada;
     }
 
@@ -76,6 +96,26 @@ public class PartidaXadrex
             capturadas.Remove(pecaCapturada);
         }
         Tabuleiro.colocarPeca(p, origem);
+
+        // jogada especial roque pequeno
+        if(p is Rei && destino.Coluna == origem.Coluna + 2)
+        {
+            Posicao origemT = new Posicao(origem.Linha, origem.Coluna + 3);
+            Posicao destinoT = new Posicao(origem.Linha, origem.Coluna + 1);
+            Peca T = Tabuleiro.retiraPeca(destinoT);
+            T.incrementarQtaMovimentos();
+            Tabuleiro.colocarPeca(T, origemT);
+        }
+
+        // jogada especial roque grande
+        if(p is Rei && destino.Coluna == origem.Coluna - 2)
+        {
+            Posicao origemT = new Posicao(origem.Linha, origem.Coluna - 4);
+            Posicao destinoT = new Posicao(origem.Linha, origem.Coluna - 1);
+            Peca T = Tabuleiro.retiraPeca(destinoT);
+            T.incrementarQtaMovimentos();
+            Tabuleiro.colocarPeca(T, origemT);
+        }
     }
 
     public bool estaEmXequeMate(Cor cor)
