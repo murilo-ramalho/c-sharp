@@ -28,15 +28,19 @@ public class Tela
         imprimirPecasCapturadas(partida);
         Console.WriteLine("Turno: " + partida.Turno);
         Console.WriteLine("Aguardando: " + partida.jogadorAtual);
-        if (partida.isXeque)
+        if (partida.isTerminado)
         {
             Console.WriteLine();
-            System.Console.WriteLine("Xeque!");
+            System.Console.WriteLine("Xeque-Mate!!");
+            System.Console.WriteLine("Vencedor: " + partida.jogadorAtual);
         }
         else
         {
-            System.Console.WriteLine("Xeque-Mate!!");
-            System.Console.WriteLine("Vencedor: " + partida.jogadorAtual);
+            if (partida.isXeque)
+            {
+                Console.WriteLine();
+                System.Console.WriteLine("Xeque!");
+            }
         }
     }
 
