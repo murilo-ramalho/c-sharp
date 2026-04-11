@@ -89,9 +89,10 @@ public class PartidaXadrex
                     if (mat[i,j])
                     {
                         Posicao destino = new Posicao(i,j);
-                        Peca pecaCapturada = executaMovimento(item.Posicao, destino);
+                        Posicao origem = item.Posicao;
+                        Peca pecaCapturada = executaMovimento(origem, destino);
                         bool testeXeque = estaEmXeque(cor);
-                        desfazMovimento(item.Posicao, destino, pecaCapturada);
+                        desfazMovimento(origem, destino, pecaCapturada);
                         if (!testeXeque)
                             return false;
                     }
@@ -203,11 +204,11 @@ public class PartidaXadrex
 
     private void colocarPecas()
     {
-        colocarNovaPeca('a', 1, new Torre(Tabuleiro, Cor.Branco));
-        colocarNovaPeca('h', 1, new Torre(Tabuleiro, Cor.Branco));
+        colocarNovaPeca('b', 1, new Torre(Tabuleiro, Cor.Branco));
+        colocarNovaPeca('b', 2, new Torre(Tabuleiro, Cor.Branco));
         colocarNovaPeca('e', 1, new Rei(Tabuleiro, Cor.Branco));
-        colocarNovaPeca('a', 8, new Torre(Tabuleiro, Cor.Preto));
+        //colocarNovaPeca('a', 8, new Torre(Tabuleiro, Cor.Preto));
         colocarNovaPeca('h', 8, new Torre(Tabuleiro, Cor.Preto));
-        colocarNovaPeca('d', 8, new Rei(Tabuleiro, Cor.Preto));
+        colocarNovaPeca('a', 8, new Rei(Tabuleiro, Cor.Preto));
     }
 }

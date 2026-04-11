@@ -33,6 +33,11 @@ public class Tela
             Console.WriteLine();
             System.Console.WriteLine("Xeque!");
         }
+        else
+        {
+            System.Console.WriteLine("Xeque-Mate!!");
+            System.Console.WriteLine("Vencedor: " + partida.jogadorAtual);
+        }
     }
 
     public static void imprimirPecasCapturadas(PartidaXadrex partida)
