@@ -117,7 +117,7 @@ public class PartidaXadrex
 
     public void validarPosicaoDestino(Posicao origem, Posicao destino)
     {
-        if (!Tabuleiro.peca(origem).podeMover(destino))
+        if (!Tabuleiro.peca(origem).movimentoPossivel(destino))
             throw new TabuleiroException("Posição de jogada Invalida");    
     }
 
