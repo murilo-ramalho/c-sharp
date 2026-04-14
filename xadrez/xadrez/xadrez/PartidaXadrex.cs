@@ -16,6 +16,14 @@ public class PartidaXadrex
     public Peca vulneravelEnPassant {get; private set;}
     private HashSet<Peca> pecas;
     private HashSet<Peca> capturadas;
+    private Stack<PromocaoInfo> promocoes;
+
+    private class PromocaoInfo
+    {
+        public Peca Peao { get; set; }
+        public Peca NovaPeca { get; set; }
+        public Posicao Destino { get; set; }
+    }
 
     public PartidaXadrex()
     {
@@ -26,8 +34,37 @@ public class PartidaXadrex
         isXeque = false;
         pecas = new HashSet<Peca>();
         capturadas = new HashSet<Peca>();
+        promocoes = new Stack<PromocaoInfo>();
         vulneravelEnPassant = null;
         colocarPecas();
+    }
+
+    private bool devePromover(Peca peca, Posicao destino)
+    {
+        if (peca is not Peao)
+            return false;
+
+        return (peca.Cor == Cor.Branco && destino.Linha == 0) ||
+               (peca.Cor == Cor.Preto && destino.Linha == 7);
+    }
+
+    private void promoverPeao(Posicao destino)
+    {
+        Peca peao = Tabuleiro.retiraPeca(destino);
+        if (peao == null)
+            return;
+
+        pecas.Remove(peao);
+        Peca novaPeca = new Dama(Tabuleiro, peao.Cor);
+        Tabuleiro.colocarPeca(novaPeca, destino);
+        pecas.Add(novaPeca);
+
+        promocoes.Push(new PromocaoInfo
+        {
+            Peao = peao,
+            NovaPeca = novaPeca,
+            Destino = destino
+        });
     }
 
     public Peca executaMovimento(Posicao origem, Posicao destino)
@@ -73,6 +110,12 @@ public class PartidaXadrex
             Tabuleiro.colocarPeca(T, destinoT);
         }
 
+        // promocao
+        if (devePromover(p, destino))
+        {
+            promoverPeao(destino);
+        }
+
         return pecaCapturada;
     }
 
@@ -112,11 +155,28 @@ public class PartidaXadrex
         {
             vulneravelEnPassant = null;
         }
+
+        // a pilha so eh usada para desfazer jogadas; em jogadas validas, descarta o registro
+        promocoes.Clear();
     }
 
     public void desfazMovimento(Posicao origem, Posicao destino, Peca pecaCapturada)
     {
         Peca p = Tabuleiro.retiraPeca(destino);
+
+        // desfaz promocao
+        if (promocoes.Count > 0)
+        {
+            PromocaoInfo promocao = promocoes.Peek();
+            if (promocao.NovaPeca == p && promocao.Destino.Linha == destino.Linha && promocao.Destino.Coluna == destino.Coluna)
+            {
+                promocoes.Pop();
+                pecas.Remove(p);
+                p = promocao.Peao;
+                pecas.Add(p);
+            }
+        }
+
         p.decrementarQtaMovimentos();
         // desfaz en passant (captura foi "ao lado", nao no destino)
         if (p is Peao && origem.Coluna != destino.Coluna && pecaCapturada != null && pecaCapturada == vulneravelEnPassant)
