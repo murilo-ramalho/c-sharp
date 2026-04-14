@@ -4,7 +4,11 @@ namespace xadrez.xadrez;
 
 public class Peao : Peca
 {
-    public Peao(Tabuleiro tabuleiro, Cor cor) : base(tabuleiro, cor) { }
+    private PartidaXadrex partida;
+    public Peao(Tabuleiro tabuleiro, Cor cor, PartidaXadrex partida) : base(tabuleiro, cor)
+    {
+        this.partida = partida;
+    }
 
     public override bool[,] MovimentoPossivel()
     {
@@ -34,17 +38,43 @@ public class Peao : Peca
 
         // captura na diagonal esquerda
         pos.definirValores(Posicao.Linha + direcao, Posicao.Coluna - 1);
-        if (Tabuleiro.posicaoValida(pos) && temAdversaria(pos))
+        if (Tabuleiro.posicaoValida(pos) && existeInimigo(pos))
         {
             mat[pos.Linha, pos.Coluna] = true;
         }
 
         // captura na diagonal direita
         pos.definirValores(Posicao.Linha + direcao, Posicao.Coluna + 1);
-        if (Tabuleiro.posicaoValida(pos) && temAdversaria(pos))
+        if (Tabuleiro.posicaoValida(pos) && existeInimigo(pos))
         {
             mat[pos.Linha, pos.Coluna] = true;
         }
+
+        // en passant (branco na linha 3; preto na linha 4)
+        if ((Cor == Cor.Branco && Posicao.Linha == 3) || (Cor == Cor.Preto && Posicao.Linha == 4))
+        {
+            Posicao esquerdaAdj = new Posicao(Posicao.Linha, Posicao.Coluna - 1);
+            Posicao esquerdaCap = new Posicao(Posicao.Linha + direcao, Posicao.Coluna - 1);
+            if (Tabuleiro.posicaoValida(esquerdaAdj) &&
+                Tabuleiro.posicaoValida(esquerdaCap) &&
+                existeInimigo(esquerdaAdj) &&
+                Tabuleiro.peca(esquerdaAdj) == partida.vulneravelEnPassant)
+            {
+                mat[esquerdaCap.Linha, esquerdaCap.Coluna] = true;
+            }
+
+            Posicao direitaAdj = new Posicao(Posicao.Linha, Posicao.Coluna + 1);
+            Posicao direitaCap = new Posicao(Posicao.Linha + direcao, Posicao.Coluna + 1);
+            if (Tabuleiro.posicaoValida(direitaAdj) &&
+                Tabuleiro.posicaoValida(direitaCap) &&
+                existeInimigo(direitaAdj) &&
+                Tabuleiro.peca(direitaAdj) == partida.vulneravelEnPassant)
+            {
+                mat[direitaCap.Linha, direitaCap.Coluna] = true;
+            }
+        }
+
+        
 
         return mat;
     }
@@ -52,11 +82,5 @@ public class Peao : Peca
     public override string ToString()
     {
         return "P";
-    }
-
-    private bool temAdversaria(Posicao pos)
-    {
-        Peca p = Tabuleiro.peca(pos);
-        return p != null && p.Cor != Cor;
     }
 }

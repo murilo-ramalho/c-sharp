@@ -35,6 +35,12 @@ public abstract class Peca
         return MovimentoPossivel()[pos.Linha, pos.Coluna];
     }
 
+    protected bool existeInimigo(Posicao pos)
+    {
+        Peca p = Tabuleiro.peca(pos);
+        return p != null && p.Cor != Cor;
+    }
+
     public void incrementarQtaMovimentos()
     {
         qtdMovimentos++;

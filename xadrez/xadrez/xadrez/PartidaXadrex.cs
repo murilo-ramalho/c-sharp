@@ -13,6 +13,7 @@ public class PartidaXadrex
     public Cor jogadorAtual { get; private set; }
     public bool isTerminado { get; private set; }
     public bool isXeque { get; private set; }
+    public Peca vulneravelEnPassant {get; private set;}
     private HashSet<Peca> pecas;
     private HashSet<Peca> capturadas;
 
@@ -25,6 +26,7 @@ public class PartidaXadrex
         isXeque = false;
         pecas = new HashSet<Peca>();
         capturadas = new HashSet<Peca>();
+        vulneravelEnPassant = null;
         colocarPecas();
     }
 
@@ -36,6 +38,20 @@ public class PartidaXadrex
         Tabuleiro.colocarPeca(p, destino);
         if (pecaCapturada != null)
             capturadas.Add(pecaCapturada);
+
+        // jogada especial en passant
+        if (p is Peao && origem.Coluna != destino.Coluna && pecaCapturada == null)
+        {
+            Posicao posPeao;
+            if (p.Cor == Cor.Branco)
+                posPeao = new Posicao(destino.Linha + 1, destino.Coluna);
+            else
+                posPeao = new Posicao(destino.Linha - 1, destino.Coluna);
+
+            pecaCapturada = Tabuleiro.retiraPeca(posPeao);
+            if (pecaCapturada != null)
+                capturadas.Add(pecaCapturada);
+        }
         
         // jogada especial roque pequeno
         if(p is Rei && destino.Coluna == origem.Coluna + 2)
@@ -84,13 +100,37 @@ public class PartidaXadrex
             Turno++;
             mudaJogador();
         }
+
+        // en passant
+        Peca p = Tabuleiro.peca(destino);
+        if (p is Peao && (destino.Linha == origem.Linha -2 || 
+            destino.Linha == origem.Linha +2))
+        {
+            vulneravelEnPassant = p;
+        }
+        else
+        {
+            vulneravelEnPassant = null;
+        }
     }
 
     public void desfazMovimento(Posicao origem, Posicao destino, Peca pecaCapturada)
     {
         Peca p = Tabuleiro.retiraPeca(destino);
         p.decrementarQtaMovimentos();
-        if (pecaCapturada != null)
+        // desfaz en passant (captura foi "ao lado", nao no destino)
+        if (p is Peao && origem.Coluna != destino.Coluna && pecaCapturada != null && pecaCapturada == vulneravelEnPassant)
+        {
+            Posicao posPeao;
+            if (p.Cor == Cor.Branco)
+                posPeao = new Posicao(destino.Linha + 1, destino.Coluna);
+            else
+                posPeao = new Posicao(destino.Linha - 1, destino.Coluna);
+
+            Tabuleiro.colocarPeca(pecaCapturada, posPeao);
+            capturadas.Remove(pecaCapturada);
+        }
+        else if (pecaCapturada != null)
         {
             Tabuleiro.colocarPeca(pecaCapturada, destino);
             capturadas.Remove(pecaCapturada);
@@ -257,14 +297,14 @@ public class PartidaXadrex
         colocarNovaPeca('g', 1, new Cavalo(Tabuleiro, Cor.Branco));
         colocarNovaPeca('h', 1, new Torre(Tabuleiro, Cor.Branco));
 
-        colocarNovaPeca('a', 2, new Peao(Tabuleiro, Cor.Branco));
-        colocarNovaPeca('b', 2, new Peao(Tabuleiro, Cor.Branco));
-        colocarNovaPeca('c', 2, new Peao(Tabuleiro, Cor.Branco));
-        colocarNovaPeca('d', 2, new Peao(Tabuleiro, Cor.Branco));
-        colocarNovaPeca('e', 2, new Peao(Tabuleiro, Cor.Branco));
-        colocarNovaPeca('f', 2, new Peao(Tabuleiro, Cor.Branco));
-        colocarNovaPeca('g', 2, new Peao(Tabuleiro, Cor.Branco));
-        colocarNovaPeca('h', 2, new Peao(Tabuleiro, Cor.Branco));
+        colocarNovaPeca('a', 2, new Peao(Tabuleiro, Cor.Branco, this));
+        colocarNovaPeca('b', 2, new Peao(Tabuleiro, Cor.Branco, this));
+        colocarNovaPeca('c', 2, new Peao(Tabuleiro, Cor.Branco, this));
+        colocarNovaPeca('d', 2, new Peao(Tabuleiro, Cor.Branco, this));
+        colocarNovaPeca('e', 2, new Peao(Tabuleiro, Cor.Branco, this));
+        colocarNovaPeca('f', 2, new Peao(Tabuleiro, Cor.Branco, this));
+        colocarNovaPeca('g', 2, new Peao(Tabuleiro, Cor.Branco, this));
+        colocarNovaPeca('h', 2, new Peao(Tabuleiro, Cor.Branco, this));
 
         colocarNovaPeca('a', 8, new Torre(Tabuleiro, Cor.Preto));
         colocarNovaPeca('b', 8, new Cavalo(Tabuleiro, Cor.Preto));
@@ -275,13 +315,13 @@ public class PartidaXadrex
         colocarNovaPeca('g', 8, new Cavalo(Tabuleiro, Cor.Preto));
         colocarNovaPeca('h', 8, new Torre(Tabuleiro, Cor.Preto));
 
-        colocarNovaPeca('a', 7, new Peao(Tabuleiro, Cor.Preto));
-        colocarNovaPeca('b', 7, new Peao(Tabuleiro, Cor.Preto));
-        colocarNovaPeca('c', 7, new Peao(Tabuleiro, Cor.Preto));
-        colocarNovaPeca('d', 7, new Peao(Tabuleiro, Cor.Preto));
-        colocarNovaPeca('e', 7, new Peao(Tabuleiro, Cor.Preto));
-        colocarNovaPeca('f', 7, new Peao(Tabuleiro, Cor.Preto));
-        colocarNovaPeca('g', 7, new Peao(Tabuleiro, Cor.Preto));
-        colocarNovaPeca('h', 7, new Peao(Tabuleiro, Cor.Preto));
+        colocarNovaPeca('a', 7, new Peao(Tabuleiro, Cor.Preto, this));
+        colocarNovaPeca('b', 7, new Peao(Tabuleiro, Cor.Preto, this));
+        colocarNovaPeca('c', 7, new Peao(Tabuleiro, Cor.Preto, this));
+        colocarNovaPeca('d', 7, new Peao(Tabuleiro, Cor.Preto, this));
+        colocarNovaPeca('e', 7, new Peao(Tabuleiro, Cor.Preto, this));
+        colocarNovaPeca('f', 7, new Peao(Tabuleiro, Cor.Preto, this));
+        colocarNovaPeca('g', 7, new Peao(Tabuleiro, Cor.Preto, this));
+        colocarNovaPeca('h', 7, new Peao(Tabuleiro, Cor.Preto, this));
     }
 }

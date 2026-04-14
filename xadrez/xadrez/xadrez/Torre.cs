@@ -14,10 +14,10 @@ public class Torre : Peca
 
         // acima
         pos.definirValores(Posicao.Linha -1, Posicao.Coluna);
-        while (Tabuleiro.posicaoValida(pos) && podeMover(pos))
+        while (Tabuleiro.posicaoValida(pos) && podeMoverPara(pos))
         {
             mat[pos.Linha, pos.Coluna] = true;
-            if(Tabuleiro.peca(pos) != null && Tabuleiro.peca(pos).Cor != Cor)
+            if (existeInimigo(pos))
             {
                 break;
             }
@@ -26,10 +26,10 @@ public class Torre : Peca
 
         // abaixo
         pos.definirValores(Posicao.Linha +1, Posicao.Coluna);
-        while (Tabuleiro.posicaoValida(pos) && podeMover(pos))
+        while (Tabuleiro.posicaoValida(pos) && podeMoverPara(pos))
         {
             mat[pos.Linha, pos.Coluna] = true;
-            if(Tabuleiro.peca(pos) != null && Tabuleiro.peca(pos).Cor != Cor)
+            if (existeInimigo(pos))
             {
                 break;
             }
@@ -38,10 +38,10 @@ public class Torre : Peca
 
         // esquerda
         pos.definirValores(Posicao.Linha, Posicao.Coluna -1);
-        while (Tabuleiro.posicaoValida(pos) && podeMover(pos))
+        while (Tabuleiro.posicaoValida(pos) && podeMoverPara(pos))
         {
             mat[pos.Linha, pos.Coluna] = true;
-            if(Tabuleiro.peca(pos) != null && Tabuleiro.peca(pos).Cor != Cor)
+            if (existeInimigo(pos))
             {
                 break;
             }
@@ -50,10 +50,10 @@ public class Torre : Peca
 
         // direita
         pos.definirValores(Posicao.Linha, Posicao.Coluna +1);
-        while (Tabuleiro.posicaoValida(pos) && podeMover(pos))
+        while (Tabuleiro.posicaoValida(pos) && podeMoverPara(pos))
         {
             mat[pos.Linha, pos.Coluna] = true;
-            if(Tabuleiro.peca(pos) != null && Tabuleiro.peca(pos).Cor != Cor)
+            if (existeInimigo(pos))
             {
                 break;
             }
@@ -68,9 +68,8 @@ public class Torre : Peca
         return "T";
     }
 
-    private bool podeMover(Posicao pos)
+    private bool podeMoverPara(Posicao pos)
     {
-        Peca p = Tabuleiro.peca(pos);
-        return p == null || p.Cor != Cor;
+        return Tabuleiro.peca(pos) == null || existeInimigo(pos);
     }
 }

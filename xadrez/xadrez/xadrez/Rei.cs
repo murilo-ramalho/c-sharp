@@ -11,10 +11,9 @@ public class Rei : Peca
     }
     private PartidaXadrex partida;
 
-    private bool podeMover(Posicao pos)
+    private bool podeMoverPara(Posicao pos)
     {
-        Peca p = Tabuleiro.peca(pos);
-        return p == null || p.Cor != this.Cor;
+        return Tabuleiro.peca(pos) == null || existeInimigo(pos);
     }
     private bool testeTorreRoque(Posicao pos)
     {
@@ -32,56 +31,56 @@ public class Rei : Peca
 
         // acima
         pos.definirValores(Posicao.Linha -1, Posicao.Coluna);
-        if(Tabuleiro.posicaoValida(pos) && podeMover(pos))
+        if(Tabuleiro.posicaoValida(pos) && podeMoverPara(pos))
         {
             mat[pos.Linha, pos.Coluna] = true;
         }
 
         // abaixo
         pos.definirValores(Posicao.Linha +1, Posicao.Coluna);
-        if(Tabuleiro.posicaoValida(pos) && podeMover(pos))
+        if(Tabuleiro.posicaoValida(pos) && podeMoverPara(pos))
         {
             mat[pos.Linha, pos.Coluna] = true;
         }
 
         // esquerda
         pos.definirValores(Posicao.Linha, Posicao.Coluna -1);
-        if(Tabuleiro.posicaoValida(pos) && podeMover(pos))
+        if(Tabuleiro.posicaoValida(pos) && podeMoverPara(pos))
         {
             mat[pos.Linha, pos.Coluna] = true;
         }
 
         // direita
         pos.definirValores(Posicao.Linha, Posicao.Coluna +1);
-        if(Tabuleiro.posicaoValida(pos) && podeMover(pos))
+        if(Tabuleiro.posicaoValida(pos) && podeMoverPara(pos))
         {
             mat[pos.Linha, pos.Coluna] = true;
         }
 
         // nordeste
         pos.definirValores(Posicao.Linha -1, Posicao.Coluna +1);
-        if(Tabuleiro.posicaoValida(pos) && podeMover(pos))
+        if(Tabuleiro.posicaoValida(pos) && podeMoverPara(pos))
         {
             mat[pos.Linha, pos.Coluna] = true;
         }
 
         // sudeste
         pos.definirValores(Posicao.Linha +1, Posicao.Coluna +1);
-        if(Tabuleiro.posicaoValida(pos) && podeMover(pos))
+        if(Tabuleiro.posicaoValida(pos) && podeMoverPara(pos))
         {
             mat[pos.Linha, pos.Coluna] = true;
         }
 
         // sudoeste
         pos.definirValores(Posicao.Linha +1, Posicao.Coluna -1);
-        if(Tabuleiro.posicaoValida(pos) && podeMover(pos))
+        if(Tabuleiro.posicaoValida(pos) && podeMoverPara(pos))
         {
             mat[pos.Linha, pos.Coluna] = true;
         }
 
         // noroeste
         pos.definirValores(Posicao.Linha -1, Posicao.Coluna -1);
-        if(Tabuleiro.posicaoValida(pos) && podeMover(pos))
+        if(Tabuleiro.posicaoValida(pos) && podeMoverPara(pos))
         {
             mat[pos.Linha, pos.Coluna] = true;
         }
