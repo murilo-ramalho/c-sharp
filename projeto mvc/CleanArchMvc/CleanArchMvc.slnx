@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="ClanArchMvc.Data/ClanArchMvc.Infra.Data.csproj" />
+  <Project Path="CleanArchMvc.Application/CleanArchMvc.Application.csproj" />
+  <Project Path="CleanArchMvc.Domain/CleanArchMvc.Domain.csproj" />
+  <Project Path="CleanArchMvc.IoC/CleanArchMvc.Infra.IoC.csproj" />
+  <Project Path="CleanArchMvc.WebUI/CleanArchMvc.WebUI.csproj" />
+</Solution>
