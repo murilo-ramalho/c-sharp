@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CleanArchMvc.Domain.Validation
 {
-    internal class DomainExceptionValidation : Exception
+    public class DomainExceptionValidation : Exception
     {
         public DomainExceptionValidation(string erro) : base(erro) { }
 

@@ -1,6 +1,7 @@
 <Solution>
   <Project Path="ClanArchMvc.Data/ClanArchMvc.Infra.Data.csproj" />
   <Project Path="CleanArchMvc.Application/CleanArchMvc.Application.csproj" />
+  <Project Path="CleanArchMvc.Domain.Tests/CleanArchMvc.Domain.Tests.csproj" Id="09348596-3bdc-49a1-85ed-d942d4733f63" />
   <Project Path="CleanArchMvc.Domain/CleanArchMvc.Domain.csproj" />
   <Project Path="CleanArchMvc.IoC/CleanArchMvc.Infra.IoC.csproj" />
   <Project Path="CleanArchMvc.WebUI/CleanArchMvc.WebUI.csproj" />
