@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug CleanArchMvc.WebUI",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build CleanArchMvc.slnx",
+      "program": "${workspaceFolder}/CleanArchMvc.WebUI/bin/Debug/net10.0/CleanArchMvc.WebUI.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/CleanArchMvc.WebUI",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      }
+    }
+  ]
+}

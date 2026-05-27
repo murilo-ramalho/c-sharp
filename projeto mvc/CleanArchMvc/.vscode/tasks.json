@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build CleanArchMvc.slnx",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder}/CleanArchMvc.slnx"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": "$msCompile",
+      "detail": "Build da solução principal."
+    },
+    {
+      "label": "run CleanArchMvc.WebUI",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "run",
+        "--project",
+        "${workspaceFolder}/CleanArchMvc.WebUI/CleanArchMvc.WebUI.csproj"
+      ],
+      "problemMatcher": "$msCompile",
+      "dependsOn": "build CleanArchMvc.slnx",
+      "detail": "Executa a aplicação WebUI."
+    }
+  ]
+}
