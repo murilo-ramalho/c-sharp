@@ -7,8 +7,6 @@ namespace CleanArchMvc.Domain.Entities
 {
     public sealed class Category : Entity
     {
-        public string Name { get; private set; } = string.Empty;
-
         public Category(string? name) { 
             ValidateDomain(name);
         }

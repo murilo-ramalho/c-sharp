@@ -7,7 +7,6 @@ namespace CleanArchMvc.Domain.Entities
 {
     public sealed class Product : Entity
     {
-        public string Name { get; private set; } = string.Empty;
         public string Description { get; private set; } = string.Empty;
         public decimal Price { get; private set; }
         public int Stock { get; private set; }
