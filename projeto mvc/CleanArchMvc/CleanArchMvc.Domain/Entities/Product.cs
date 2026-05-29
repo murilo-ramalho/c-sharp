@@ -7,30 +7,30 @@ namespace CleanArchMvc.Domain.Entities
 {
     public sealed class Product : Entity
     {
-        public string Description { get; private set; } = string.Empty;
+        public string Description { get; private set; }
         public decimal Price { get; private set; }
         public int Stock { get; private set; }
         public string? Image { get; private set; }
 
-        public Product(string name, string description, decimal price, int stock, string? image)
+        public Product(string name, string description, decimal price, int stock, string image)
         {
             ValidateDomain(name, description, price, stock, image);
         }
 
-        public Product(int id, string name, string description, decimal price, int stock, string? image)
+        public Product(int id, string name, string description, decimal price, int stock, string image)
         {
             DomainExceptionValidation.When(id < 0, "Invalid Id value.");
             Id = id;
             ValidateDomain(name, description, price, stock, image);
         }
-        public void Update(string name, string description, decimal price, int stock, string? image, int categoryId)
+        public void Update(string name, string description, decimal price, int stock, string image, int categoryId)
         {
             ValidateDomain(name, description, price, stock, image);
             DomainExceptionValidation.When(categoryId < 0, "Invalid Category Id");
             CategoryId = categoryId;
         }
 
-        private void ValidateDomain(string name, string description,  decimal price, int stock,  string? image)
+        private void ValidateDomain(string name, string description,  decimal price, int stock,  string image)
         {
             DomainExceptionValidation.When(string.IsNullOrEmpty(name), "Invalid Name. Name is Required");
             DomainExceptionValidation.When(name.Length < 3, "Invalid name, too short, minimum 3 characters");
@@ -52,7 +52,7 @@ namespace CleanArchMvc.Domain.Entities
         }
 
         public int CategoryId { get; set; }
-        public Category? Category { get; set; }
+        public Category Category { get; set; }
 
     }
 }
