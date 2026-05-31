@@ -37,13 +37,13 @@ namespace CleanArchMvc.Domain.Tests
             Action action = () => new Category(1, "");
             action.Should()
                 .Throw<CleanArchMvc.Domain.Validation.DomainExceptionValidation>()
-                .WithMessage("Invalid name.Name is required");
+                .WithMessage("Invalid name. Name is required");
         }
 
         [Fact]
         public void CreateCategory_WithNullNameValue_DomainExceptionInvalidName()
         {
-            Action action = () => new Category(1, null);
+            Action action = () => new Category(1, null!);
             action.Should()
                 .Throw<CleanArchMvc.Domain.Validation.DomainExceptionValidation>();
         }

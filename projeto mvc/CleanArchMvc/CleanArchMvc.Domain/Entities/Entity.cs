@@ -7,6 +7,6 @@ namespace CleanArchMvc.Domain.Entities
     public abstract class Entity
     {
         public int Id { get; protected set; }
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
     }
 }

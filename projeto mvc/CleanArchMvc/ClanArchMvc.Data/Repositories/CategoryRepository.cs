@@ -36,7 +36,8 @@ namespace ClanArchMvc.Infra.Data.Repositories
 
         public async Task<Category> GetCategoryByIdAsync(int? id)
         {
-            return await _categoryContext.Categories.FindAsync(id);
+            return await _categoryContext.Categories.FindAsync(id)
+                ?? throw new InvalidOperationException("Category not found.");
         }
 
         public async Task<Category> UpdateAsync(Category category)
