@@ -16,7 +16,7 @@ namespace CleanArchMvc.Infra.IoC
                 options.UseNpgsql(configuration.GetConnectionString("DefautConnection"
                 ), b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
-            services.AddScoped<ICategoryRpository, CategoryRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
 
             return services;

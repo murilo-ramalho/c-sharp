@@ -8,7 +8,7 @@ using System.Text;
 
 namespace ClanArchMvc.Infra.Data.Repositories
 {
-    public class CategoryRepository : ICategoryRpository
+    public class CategoryRepository : ICategoryRepository
     {
         ApplicationDbContext _categoryContext;
         public CategoryRepository(ApplicationDbContext context) 

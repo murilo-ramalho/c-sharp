@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CleanArchMvc.Domain.Interfaces
 {
-    public interface ICategoryRpository
+    public interface ICategoryRepository
     {
         Task<IEnumerable<Category>> GetCategoriesAsync();
         Task<Category> GetCategoryByIdAsync(int? id);
