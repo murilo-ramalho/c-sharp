@@ -1,7 +1,4 @@
 ﻿using CleanArchMvc.Application.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CleanArchMvc.Application.Interfaces
 {
