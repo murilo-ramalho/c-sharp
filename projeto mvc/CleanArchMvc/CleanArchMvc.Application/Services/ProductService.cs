@@ -63,16 +63,16 @@ namespace CleanArchMvc.Application.Services
             await _mediator.Send(productRemoveCommand);
         }
 
-        public async Task<ProductDTO> GetProductCategoryById(int id)
-        {
-            var productByIdQuery = new GetProductByIdQuery(id);
+        //public async Task<ProductDTO> GetProductCategoryById(int id)
+        //{
+        //    var productByIdQuery = new GetProductByIdQuery(id);
 
-            if (productByIdQuery == null)
-                throw new ApplicationException("Entity could not be loaded: " + nameof(productByIdQuery));
+        //    if (productByIdQuery == null)
+        //        throw new ApplicationException("Entity could not be loaded: " + nameof(productByIdQuery));
 
-            var result = await _mediator.Send(productByIdQuery);
+        //    var result = await _mediator.Send(productByIdQuery);
 
-            return _mapper.Map<ProductDTO>(result);
-        }
+        //    return _mapper.Map<ProductDTO>(result);
+        //}
     }
 }

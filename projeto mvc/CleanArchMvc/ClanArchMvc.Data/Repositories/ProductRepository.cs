@@ -37,15 +37,17 @@ namespace ClanArchMvc.Infra.Data.Repositories
 
         public async Task<Product> GetProductByIdAsync(int? id)
         {
-            return await _productContext.Products.FindAsync(id)
-                ?? throw new InvalidOperationException("Product not found.");
-        }
-
-        public async Task<Product> GetProductCategoryAsync(int? id)
-        {
+            //return await _productContext.Products.FindAsync(id)
+            //    ?? throw new InvalidOperationException("Product not found.");
             return await _productContext.Products.Include(c => c.Category).SingleOrDefaultAsync(p => p.Id == id)
                 ?? throw new InvalidOperationException("Product not found.");
         }
+
+        //public async Task<Product> GetProductCategoryAsync(int? id)
+        //{
+        //    return await _productContext.Products.Include(c => c.Category).SingleOrDefaultAsync(p => p.Id == id)
+        //        ?? throw new InvalidOperationException("Product not found.");
+        //}
 
         public async Task<Product> UpdateAsync(Product product)
         {
