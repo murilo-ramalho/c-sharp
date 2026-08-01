@@ -35,9 +35,9 @@ namespace CleanArchMvc.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ProductDTO productDTO) 
+        public async Task<IActionResult> Create(ProductDTO productDTO)
         {
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
                 await _productService.add(productDTO);
                 return RedirectToAction(nameof(Index));
@@ -50,7 +50,7 @@ namespace CleanArchMvc.WebUI.Controllers
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
-                var productDto = await _productService.GetById(id);
+            var productDto = await _productService.GetById(id);
 
             if (productDto == null) return NotFound();
 
@@ -71,6 +71,26 @@ namespace CleanArchMvc.WebUI.Controllers
             }
 
             return View(productDto);
+        }
+
+        [HttpGet()]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var productDto = await _productService.GetById(id);
+
+            if (productDto == null) return NotFound();
+
+            return View(productDto);
+        }
+
+        [HttpPost(), ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            await _productService.Remove(id);
+            return RedirectToAction("Index");
         }
     }
 }
