@@ -7,7 +7,7 @@ namespace CleanArchMvc.Domain.Entities
 {
     public class Email
     {
-        private string Value { get; set; }
+        private string Value { get; set; } = "no-replay@email.com";
 
         private static readonly Regex EmailRegex = new(
             @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
