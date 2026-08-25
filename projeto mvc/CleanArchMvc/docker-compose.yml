@@ -1,0 +1,48 @@
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: CleanArchMvc
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: DB@ccess
+    ports:
+      - "5432:5432"
+    volumes:
+      - cleanarchmvc-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d CleanArchMvc"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefautConnection: Host=db;Port=5432;Database=CleanArchMvc;Username=postgres;Password=DB@ccess
+    ports:
+      - "5258:8080"
+    volumes:
+      - .:/src
+      - cleanarchmvc-nuget:/root/.nuget/packages
+      - cleanarchmvc-domain-obj:/src/CleanArchMvc.Domain/obj
+      - cleanarchmvc-domain-tests-obj:/src/CleanArchMvc.Domain.Tests/obj
+      - cleanarchmvc-application-obj:/src/CleanArchMvc.Application/obj
+      - cleanarchmvc-data-obj:/src/ClanArchMvc.Data/obj
+      - cleanarchmvc-ioc-obj:/src/CleanArchMvc.IoC/obj
+      - cleanarchmvc-webui-obj:/src/CleanArchMvc.WebUI/obj
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  cleanarchmvc-db:
+  cleanarchmvc-nuget:
+  cleanarchmvc-domain-obj:
+  cleanarchmvc-domain-tests-obj:
+  cleanarchmvc-application-obj:
+  cleanarchmvc-data-obj:
+  cleanarchmvc-ioc-obj:
+  cleanarchmvc-webui-obj:

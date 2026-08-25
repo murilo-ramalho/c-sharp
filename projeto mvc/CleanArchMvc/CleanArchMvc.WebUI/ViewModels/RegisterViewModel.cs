@@ -7,7 +7,7 @@ namespace CleanArchMvc.WebUI.ViewModels
     {
         [Required]
         [EmailAddress]
-        public Email Email { get; set; }
+        public string Email { get; set; }
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }

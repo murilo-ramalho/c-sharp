@@ -24,7 +24,12 @@ namespace CleanArchMvc.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
-            var result = await _authenticate.Authenticate(loginViewModel.Email, loginViewModel.Password);
+            if (!ModelState.IsValid)
+                return View(loginViewModel);
+
+            var result = await _authenticate.Authenticate(
+                new CleanArchMvc.Domain.Entities.Email(loginViewModel.Email),
+                loginViewModel.Password);
 
             if (string.IsNullOrEmpty(loginViewModel.ReturnUrl))
             {
@@ -49,7 +54,12 @@ namespace CleanArchMvc.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel) 
         {
-            var result = await _authenticate.RegisterUser(registerViewModel.Email, registerViewModel.Password);
+            if (!ModelState.IsValid)
+                return View(registerViewModel);
+
+            var result = await _authenticate.RegisterUser(
+                new CleanArchMvc.Domain.Entities.Email(registerViewModel.Email),
+                registerViewModel.Password);
 
             if (result)
             {
