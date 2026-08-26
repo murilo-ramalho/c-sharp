@@ -10,7 +10,7 @@ namespace CleanArchMvc.Domain.Entities
         private string Value { get; set; } = "no-replay@email.com";
 
         private static readonly Regex EmailRegex = new(
-            @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+            @"^[^@\s\\]+@(?:localhost|[^@\s\\]+(?:\.[^@\s\\]+)+)$",
             RegexOptions.Compiled | 
             RegexOptions.IgnoreCase
         );

@@ -38,18 +38,18 @@ namespace ClanArchMvc.Infra.Data.Identity
 
         public void SeedUsers()
         {
-            if (_userManager.FindByEmailAsync("usuario@localhost").Result == null)
+            if (_userManager.FindByEmailAsync("usuario@localhost.com").Result == null)
             {
                 ApplicationUser user = new ApplicationUser();
-                user.UserName = "usuario@localhost";
-                user.Email = "usuario@localhost";
-                user.NormalizedUserName = "USUARIO@LOCALHOST";
-                user.NormalizedEmail = "USUARIO@LOCALHOST";
+                user.UserName = "usuario@localhost.com";
+                user.Email = "usuario@localhost.com";
+                user.NormalizedUserName = "USUARIO@LOCALHOST.com";
+                user.NormalizedEmail = "USUARIO@LOCALHOST.com";
                 user.EmailConfirmed = true;
                 user.LockoutEnabled = false;
                 user.SecurityStamp = Guid.NewGuid().ToString();
 
-                IdentityResult result = _userManager.CreateAsync(user, "usuario#2026").Result;
+                IdentityResult result = _userManager.CreateAsync(user, "Usuario#2026").Result;
 
                 if (result.Succeeded)
                 {
@@ -57,18 +57,18 @@ namespace ClanArchMvc.Infra.Data.Identity
                 }
             }
 
-            if (_userManager.FindByEmailAsync("admin@localhost").Result == null)
+            if (_userManager.FindByEmailAsync("admin@localhost.com").Result == null)
             {
                 ApplicationUser user = new ApplicationUser();
-                user.UserName = "admin@localhost";
-                user.Email = "admin@localhost";
-                user.NormalizedUserName = "ADMIN@LOCALHOST";
-                user.NormalizedEmail = "ADMIN@LOCALHOST";
+                user.UserName = "admin@localhost.com";
+                user.Email = "admin@localhost.com";
+                user.NormalizedUserName = "ADMIN@LOCALHOST.com";
+                user.NormalizedEmail = "ADMIN@LOCALHOST.com";
                 user.EmailConfirmed = true;
                 user.LockoutEnabled = false;
                 user.SecurityStamp = Guid.NewGuid().ToString();
 
-                IdentityResult result = _userManager.CreateAsync(user, "adm#2021").Result;
+                IdentityResult result = _userManager.CreateAsync(user, "Admin#2021").Result;
 
                 if (result.Succeeded)
                 {
