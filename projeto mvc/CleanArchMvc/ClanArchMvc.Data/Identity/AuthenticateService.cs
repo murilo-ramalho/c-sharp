@@ -17,7 +17,7 @@ namespace ClanArchMvc.Infra.Data.Identity
             _signInManager = signInManager;
             _userManager = userManager;
         }
-        public async Task<bool> Authenticate(Email email, string password)
+        public async Task<bool> Authenticate(string email, string password)
         {
             var result = await _signInManager.PasswordSignInAsync(email.ToString(), password, false, lockoutOnFailure: false);
 

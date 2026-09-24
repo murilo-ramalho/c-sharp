@@ -7,7 +7,7 @@ namespace CleanArchMvc.Domain.Account
 {
     public interface IAuthenticate
     {
-        Task<bool> Authenticate(Email email, string password);
+        Task<bool> Authenticate(string email, string password);
         Task<bool> RegisterUser(Email email, string password);
         Task Logout();
     }
