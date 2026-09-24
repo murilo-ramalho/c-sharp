@@ -29,7 +29,7 @@ namespace ClanArchMvc.Infra.Data.Identity
             await _signInManager.SignOutAsync();
         }
 
-        public async Task<bool> RegisterUser(Email email, string password)
+        public async Task<bool> RegisterUser(string email, string password)
         {
             var applicationUser = new ApplicationUser
             {
